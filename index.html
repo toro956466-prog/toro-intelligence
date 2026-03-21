@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toro Intelligence — For Electricians</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+ --bg: #111010;
+ --surface: #181614;
+ --card: #1d1b18;
+ --border: #2a2724;
+ --border2: #3a3730;
+ --text: #e8e3d8;
+ --muted: #7a7469;
+ --faint: #252220;
+ --amber: #f0a500;
+ --amber2: #c98a00;
+ --amberlo: rgba(240,165,0,0.07);
+ --green: #5aad7a;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");opacity:.5}
+.d{font-family:'Bebas Neue',sans-serif;letter-spacing:.02em;line-height:.95}
+.wrap{max-width:1060px;margin:0 auto;padding:0 32px}
+.wrap-narrow{max-width:700px;margin:0 auto;padding:0 32px}
+section{padding:96px 0;border-top:1px solid var(--border)}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(17,16,16,.93);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 32px}
+.nav-inner{max-width:1060px;margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.1em;color:var(--text);text-decoration:none}
+.logo b{color:var(--amber);font-weight:400}
+.nav-btn{background:var(--amber);color:#111;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:9px 22px;border-radius:2px;text-decoration:none;transition:background .15s}
+.nav-btn:hover{background:var(--amber2)}
+
+.hero{border-top:none;padding:0;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:repeating-linear-gradient(-52deg,transparent,transparent 20px,rgba(240,165,0,.018) 20px,rgba(240,165,0,.018) 21px);pointer-events:none}
+.hero-grid{max-width:1060px;margin:0 auto;padding:80px 32px;display:grid;grid-template-columns:1fr 400px;gap:64px;align-items:center;min-height:calc(100vh - 56px)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--amber);margin-bottom:28px}
+.eyebrow::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.65)}}
+h1{font-size:clamp(60px,8vw,100px);margin-bottom:28px}
+h1 em{font-style:normal;color:var(--amber);display:block}
+.lead{font-size:18px;font-weight:300;color:#b0aa9f;line-height:1.7;max-width:460px;margin-bottom:40px}
+.lead strong{color:var(--text);font-weight:500}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--amber);color:#111;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:16px 32px;border-radius:2px;text-decoration:none;transition:background .15s,transform .1s}
+.btn:hover{background:var(--amber2);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:13px;font-weight:500;text-decoration:none;margin-left:24px;transition:color .15s}
+.btn-ghost:hover{color:var(--text)}
+.hero-left{animation:slideLeft .65s ease both}@keyframes slideLeft{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:translateX(0)}}
+
+.mockup{background:var(--card);border:1px solid var(--border2);border-radius:18px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.03);animation:rise .8s .3s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.mock-bar{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+.mock-av{width:32px;height:32px;border-radius:50%;background:var(--amber);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;color:#111}
+.mock-name{font-size:14px;font-weight:600}
+.mock-status{font-size:11px;color:var(--green);margin-top:1px}
+.mock-tag{margin-left:auto;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:var(--amberlo);color:var(--amber);border:1px solid rgba(240,165,0,.25);padding:3px 8px;border-radius:2px}
+.mock-body{padding:18px 14px;display:flex;flex-direction:column;gap:11px}
+.msg{display:flex;flex-direction:column;gap:3px;animation:msgIn .4s ease both}
+.msg.out{align-items:flex-end}
+.msg:nth-child(1){animation-delay:.6s}.msg:nth-child(2){animation-delay:.95s}.msg:nth-child(3){animation-delay:1.3s}.msg:nth-child(4){animation-delay:1.65s}.msg:nth-child(5){animation-delay:2s}
+@keyframes msgIn{from{opacity:0;transform:translateX(6px)}to{opacity:1;transform:translateX(0)}}
+.bubble{max-width:88%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.45}
+.msg.in .bubble{background:var(--faint);border-radius:4px 12px 12px 12px}
+.msg.out .bubble{background:var(--amber);color:#111;font-weight:500;border-radius:12px 4px 12px 12px}
+.msg-time{font-size:10px;color:var(--muted);padding:0 4px}
+.msg.out .msg-time{text-align:right}
+.ai-tag{color:var(--amber);font-size:10px;font-weight:700;letter-spacing:.08em}
+.mock-input{margin:4px 14px 14px;background:var(--faint);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+.sec-eye{font-size:11px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--amber);margin-bottom:14px}
+.sec-h{font-size:clamp(36px,5vw,58px);margin-bottom:18px;max-width:580px}
+.sec-lead{font-size:17px;font-weight:300;color:#b0aa9f;line-height:1.7;max-width:540px;margin-bottom:52px}
+
+.pain-bg{background:var(--surface)}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.pain-card{background:var(--bg);padding:30px 26px;position:relative;overflow:hidden;transition:background .2s}
+.pain-card:hover{background:#141210}
+.pain-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--amber);transition:height .3s ease}
+.pain-card:hover::before{height:100%}
+.pain-icon{font-size:22px;margin-bottom:14px;display:block}
+.pain-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.04em;margin-bottom:7px}
+.pain-body{font-size:14px;color:var(--muted);line-height:1.6}
+
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.how-sticky{position:sticky;top:80px}
+.steps{display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:44px 1fr;gap:0 18px;padding:26px 0;border-bottom:1px solid var(--border)}
+.step:last-child{border-bottom:none}
+.step-n{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--amber);padding-top:3px;line-height:1}
+.step-title{font-size:16px;font-weight:600;margin-bottom:5px}
+.step-body{font-size:14px;color:var(--muted);line-height:1.65}
+
+.uc-bg{background:var(--surface)}
+.uc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.uc-card{background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:18px 22px;display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;transition:border-color .2s,background .2s}
+.uc-card:hover{border-color:var(--border2);background:var(--faint)}
+.uc-icon{width:36px;height:36px;border-radius:6px;background:var(--amberlo);border:1px solid rgba(240,165,0,.18);display:flex;align-items:center;justify-content:center;font-size:17px}
+.uc-main{font-size:14px;font-weight:500}
+.uc-sub{font-size:12px;color:var(--muted);margin-top:2px}
+.uc-arr{color:var(--amber);opacity:.4;font-size:15px;transition:opacity .2s,transform .2s}
+.uc-card:hover .uc-arr{opacity:1;transform:translateX(2px)}
+
+.agents-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.agent-card{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.agent-head{padding:22px 26px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px}
+.agent-av{width:42px;height:42px;border-radius:50%;background:var(--amber);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:20px;color:#111}
+.agent-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em}
+.agent-role{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--amber);margin-top:2px}
+.agent-body{padding:22px 26px 26px}
+.agent-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.agent-list li{display:flex;align-items:flex-start;gap:9px;font-size:14px;color:#b0aa9f}
+.agent-list li::before{content:'⚡';font-size:11px;color:var(--amber);flex-shrink:0;margin-top:3px}
+
+.pricing-bg{background:var(--surface)}
+.vs-strip{display:flex;overflow:hidden;border:1px solid var(--border);border-radius:4px;margin-bottom:56px}
+.vs-col{flex:1;padding:20px 26px;border-right:1px solid var(--border)}
+.vs-col:last-child{border-right:none}
+.vs-col.hi{background:var(--amberlo)}
+.vs-lbl{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.vs-price{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:-.01em}
+.vs-col.hi .vs-price{color:var(--amber)}
+.vs-price.strike{text-decoration:line-through;color:var(--border2)}
+.vs-desc{font-size:12px;color:var(--muted);margin-top:3px}
+
+.price-card{max-width:580px;margin:0 auto;background:var(--card);border:1px solid var(--amber2);border-radius:6px;overflow:hidden}
+.price-head{padding:30px 36px 26px;border-bottom:1px solid var(--border)}
+.price-tier{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.06em;margin-bottom:4px}
+.price-tagline{font-size:13px;color:var(--muted);font-weight:500;letter-spacing:.06em}
+.price-row{margin-top:22px;display:flex;align-items:baseline;gap:4px}
+.price-dollar{font-size:24px;color:var(--muted);font-weight:600;align-self:flex-start;margin-top:8px}
+.price-num{font-family:'Bebas Neue',sans-serif;font-size:68px;color:var(--amber);letter-spacing:-.02em;line-height:1}
+.price-per{font-size:15px;color:var(--muted);margin-left:4px}
+.price-body{padding:26px 36px 30px}
+.price-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.price-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#b0aa9f}
+.price-list li::before{content:'✓';color:var(--green);font-weight:700;font-size:13px;flex-shrink:0;margin-top:1px}
+.price-list li.star::before{content:'★';color:var(--amber)}
+
+.intel-box{background:var(--bg);border:1px solid var(--border2);border-radius:4px;padding:20px 22px}
+.intel-label{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.intel-desc{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:16px}
+.intel-tiers{display:flex;border:1px solid var(--border2);border-radius:3px;overflow:hidden}
+.intel-tier{flex:1;padding:12px 16px;text-align:center;border-right:1px solid var(--border2)}
+.intel-tier:last-child{border-right:none}
+.intel-tier-name{font-size:13px;font-weight:600;color:var(--text)}
+.intel-tier-price{font-size:12px;color:var(--muted);margin-top:2px}
+.intel-tier.active{background:var(--amberlo)}
+.intel-tier.active .intel-tier-price{color:var(--amber)}
+
+.price-foot{padding:14px 36px;background:rgba(255,255,255,.015);border-top:1px solid var(--border);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+
+.setup-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px}
+.setup-cell{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:18px 20px}
+.setup-lbl{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.setup-price{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:-.01em}
+.setup-note{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.5}
+
+.closing-bg{background:var(--surface);text-align:center}
+.closing-h{font-size:clamp(40px,6vw,72px);max-width:680px;margin:0 auto 22px}
+.closing-h em{font-style:normal;color:var(--amber);display:block}
+.closing-p{font-size:17px;font-weight:300;color:#b0aa9f;max-width:460px;margin:0 auto 40px;line-height:1.7}
+.cta-group{display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap}
+.chips{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;margin-top:56px;padding-top:56px;border-top:1px solid var(--border)}
+.chip{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);font-weight:500}
+.chip span{font-size:15px}
+
+footer{border-top:1px solid var(--border);padding:26px 32px}
+.foot-inner{max-width:1060px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.foot-logo{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.1em;color:var(--muted)}
+.foot-logo b{color:var(--amber);font-weight:400}
+.foot-note{font-size:12px;color:var(--muted)}
+
+[data-r]{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+[data-r].on{opacity:1;transform:none}
+
+@media(max-width:880px){
+.hero-grid{grid-template-columns:1fr;min-height:auto}
+.mockup{display:none}
+.pain-grid{grid-template-columns:1fr 1fr}
+.how-grid{grid-template-columns:1fr}
+.how-sticky{position:relative;top:auto}
+.agents-grid,.uc-grid{grid-template-columns:1fr}
+.setup-row{grid-template-columns:1fr}
+.vs-strip{flex-direction:column}
+.vs-col{border-right:none;border-bottom:1px solid var(--border)}
+.intel-tiers{flex-direction:column}
+.intel-tier{border-right:none;border-bottom:1px solid var(--border2)}
+.intel-tier:last-child{border-bottom:none}
+}
+@media(max-width:560px){
+.wrap,.wrap-narrow{padding:0 20px}
+section{padding:64px 0}
+.pain-grid{grid-template-columns:1fr}
+.chips{gap:18px}
+nav{padding:0 20px}
+.price-head,.price-body,.price-foot{padding-left:22px;padding-right:22px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+ <div class="nav-inner">
+ <a href="#" class="logo">Toro<b>.</b></a>
+ <a href="#pricing" class="nav-btn">Book a Demo →</a>
+ </div>
+</nav>
+
+<section class="hero">
+ <div class="hero-grid">
+ <div class="hero-left">
+ <div class="eyebrow">For Electrical Businesses</div>
+ <h1 class="d">Never lose a <em>job lead</em> on the road.</h1>
+ <p class="lead">Toro helps electricians <strong>respond to customers faster</strong>, recover missed calls with automatic texts, and keep scheduling moving — without being glued to your phone.</p>
+ <div>
+ <a href="#pricing" class="btn">Book a Demo →</a>
+ <a href="#how" class="btn-ghost">See how it works ↓</a>
+ </div>
+ </div>
+<div class="mockup">
+ <div class="mock-bar">
+ <div class="mock-av">C</div>
+ <div>
+ <div class="mock-name">Chloe</div>
+ <div class="mock-status">● Active</div>
+ </div>
+ <div class="mock-tag">AI Draft</div>
+ </div>
+ <div class="mock-body">
+ <div class="msg in">
+ <div class="bubble">Hey, do you service Draper? Need an EV charger installed ASAP.</div>
+ <div class="msg-time">Customer · 8:42 PM</div>
+ </div>
+ <div class="msg out">
+ <div class="bubble">Hi! Yes, we cover Draper. We install Level 2 EV chargers and can usually get out within a few days. Want me to check availability?</div>
+ <div class="msg-time"><span class="ai-tag">⚡ Chloe</span> · 8:42 PM · 12s response</div>
+ </div>
+ <div class="msg in">
+ <div class="bubble">Yes please. Do you do free quotes?</div>
+ <div class="msg-time">Customer · 8:44 PM</div>
+ </div>
+ <div class="msg out">
+ <div class="bubble">We do free quotes — most Level 2 installs run $400–800 depending on panel location. Can I get your address and connect you with the owner to confirm a time?</div>
+ <div class="msg-time"><span class="ai-tag">⚡ Chloe</span> · 8:44 PM</div>
+ </div>
+ <div class="msg in">
+ <div class="bubble">4921 S Draper Ridge Way. Tomorrow afternoon works.</div>
+ <div class="msg-time">Customer · 8:46 PM</div>
+ </div>
+ </div>
+ <div class="mock-input">Telegram draft ready <span style="color:var(--amber)">→ Type "send" to approve</span></div>
+</div>
+ </div>
+</section>
+
+<section class="pain-bg">
+ <div class="wrap">
+ <div data-r>
+ <div class="sec-eye">The Problem</div>
+ <h2 class="d sec-h">Most electrical leads die quietly.</h2>
+ <p class="sec-lead">Not because the job wasn't good. Because nobody replied fast enough.</p>
+ </div>
+ <div class="pain-grid" data-r>
+ <div class="pain-card">
+ <span class="pain-icon">📵</span>
+ <div class="pain-title">Missed Calls on the Job</div>
+ <p class="pain-body">You're in a panel box, phone goes to voicemail. Customer gets a text recovery — but the window to respond is short.</p>
+ </div>
+ <div class="pain-card">
+ <span class="pain-icon">⏳</span>
+ <div class="pain-title">Slow Quote Replies</div>
+ <p class="pain-body">A customer texts for a quote. It sits unanswered for hours. That job goes to whoever replied first.</p>
+ </div>
+ <div class="pain-card">
+ <span class="pain-icon">🔁</span>
+ <div class="pain-title">Same Questions Every Day</div>
+ <p class="pain-body">"Do you service my area?" "What do you charge?" Answering these manually eats time you don't have.</p>
+ </div>
+ <div class="pain-card">
+ <span class="pain-icon">📅</span>
+ <div class="pain-title">Scheduling Friction</div>
+ <p class="pain-body">Five texts minimum to book one job. Back and forth on times, confirmations, reminders — all manual.</p>
+ </div>
+ <div class="pain-card">
+ <span class="pain-icon">💨</span>
+ <div class="pain-title">Follow-Up Gets Dropped</div>
+ <p class="pain-body">You send a quote. Customer goes quiet. No system to follow up — so the lead just fades out.</p>
+ </div>
+ <div class="pain-card">
+ <span class="pain-icon">🔔</span>
+ <div class="pain-title">Constant Interruptions</div>
+ <p class="pain-body">Every notification pulls you off a job. After hours, the questions don't stop — but you have to.</p>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section id="how">
+ <div class="wrap">
+ <div class="how-grid">
+ <div class="how-sticky" data-r>
+ <div class="sec-eye">How It Works</div>
+ <h2 class="d sec-h">Your business stays responsive. You stay focused.</h2>
+ <p style="font-size:16px;color:var(--muted);line-height:1.7;margin-top:18px;max-width:380px;">Toro runs in the background as your managed communication assistant. You're in control — but the business is always on.</p>
+ </div>
+ <div class="steps" data-r>
+ <div class="step">
+ <div class="step-n">01</div>
+ <div>
+ <div class="step-title">Customer reaches out</div>
+ <p class="step-body">A customer texts your business number. Chloe picks it up within seconds during your business hours — no lag, no missed thread.</p>
+ </div>
+ </div>
+ <div class="step">
+ <div class="step-n">02</div>
+ <div>
+ <div class="step-title">Chloe qualifies the job</div>
+ <p class="step-body">Asks the right questions. Service area, job type, urgency, contact info. Answers common questions with your specifics.</p>
+ </div>
+ </div>
+ <div class="step">
+ <div class="step-n">03</div>
+ <div>
+ <div class="step-title">Max handles scheduling</div>
+ <p class="step-body">Customer wants to book? Max checks availability, drafts the appointment, prepares a confirmation — ready for your approval.</p>
+ </div>
+ </div>
+ <div class="step">
+ <div class="step-n">04</div>
+ <div>
+ <div class="step-title">You approve via Telegram</div>
+ <p class="step-body">Chloe drafts a response and sends it to your Telegram. You read it, hit approve, and it goes out as an SMS to the customer. You never lose the thread.</p>
+ </div>
+ </div>
+ <div class="step">
+ <div class="step-n">05</div>
+ <div>
+ <div class="step-title">Gets smarter over time</div>
+ <p class="step-body">Every conversation trains your agents on your business, your tone, your prices. Generic tools can't do this.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section class="uc-bg">
+ <div class="wrap">
+ <div data-r>
+ <div class="sec-eye">Built for Your Workflow</div>
+ <h2 class="d sec-h">Handles the texts you're too busy to send.</h2>
+ <p class="sec-lead" style="margin-bottom:40px;">Real situations Chloe handles every day for electrical businesses.</p>
+ </div>
+ <div class="uc-grid" data-r>
+ <div class="uc-card"><div class="uc-icon">📍</div><div><div class="uc-main">Service Area Check</div><div class="uc-sub">"Do you cover South Jordan?"</div></div><div class="uc-arr">→</div></div>
+ <div class="uc-card"><div class="uc-icon">⚡</div><div><div class="uc-main">EV Charger Inquiry</div><div class="uc-sub">"Do you install Level 2 chargers?"</div></div><div class="uc-arr">→</div></div>
+ <div class="uc-card"><div class="uc-icon">💡</div><div><div class="uc-main">Lighting Quote</div><div class="uc-sub">"I need recessed lighting in 3 rooms."</div></div><div class="uc-arr">→</div></div>
+ <div class="uc-card"><div class="uc-icon">🔌</div><div><div class="uc-main">Panel / Breaker Issue</div><div class="uc-sub">"My breaker keeps tripping."</div></div><div class="uc-arr">→</div></div>
+ <div class="uc-card"><div class="uc-icon">📞</div><div><div class="uc-main">Missed Call Recovery</div><div class="uc-sub">"I missed a call from this number."</div></div><div class="uc-arr">→</div></div>
+ <div class="uc-card"><div class="uc-icon">📆</div><div><div class="uc-main">Appointment Booking</div><div class="uc-sub">"Can someone come next Tuesday?"</div></div><div class="uc-arr">→</div></div>
+ <div class="uc-card"><div class="uc-icon">💰</div><div><div class="uc-main">Pricing Questions</div><div class="uc-sub">"How much for a panel upgrade?"</div></div><div class="uc-arr">→</div></div>
+ <div class="uc-card"><div class="uc-icon">🔄</div><div><div class="uc-main">Quote Follow-Up</div><div class="uc-sub">Auto-follow up on estimates gone quiet</div></div><div class="uc-arr">→</div></div>
+ </div>
+ </div>
+</section>
+
+<section>
+ <div class="wrap">
+ <div data-r>
+ <div class="sec-eye">Your Team</div>
+ <h2 class="d sec-h">Two agents. One job.</h2>
+ <p class="sec-lead">Chloe handles the conversation. Max handles the calendar. Together they turn inquiries into booked work.</p>
+ </div>
+ <div class="agents-grid" data-r>
+ <div class="agent-card">
+ <div class="agent-head">
+ <div class="agent-av">C</div>
+ <div><div class="agent-name d">Chloe</div><div class="agent-role">Customer Communications</div></div>
+ </div>
+ <div class="agent-body">
+ <ul class="agent-list">
+ <li>Responds to inbound texts immediately</li>
+ <li>Sends automatic texts after missed calls</li>
+ <li>Asks qualifying questions, collects job details</li>
+ <li>Identifies urgency and flags hot leads</li>
+ <li>Answers common questions about your business</li>
+ <li>Moves customers toward scheduling</li>
+ <li>Drafts follow-ups for estimates gone quiet</li>
+ </ul>
+ </div>
+ </div>
+ <div class="agent-card">
+ <div class="agent-head">
+ <div class="agent-av">M</div>
+ <div><div class="agent-name d">Max</div><div class="agent-role">Scheduling &amp; Calendar</div></div>
+ </div>
+ <div class="agent-body">
+ <ul class="agent-list">
+ <li>Coordinates appointment availability</li>
+ <li>Prepares booking drafts for your approval</li>
+ <li>Sends customer confirmations</li>
+ <li>Handles rescheduling requests</li>
+ <li>Syncs with Google Calendar</li>
+ <li>Morning briefings on the day's schedule</li>
+ <li>Flags gaps and scheduling conflicts</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+ </div>
+</section>
+
+<section class="pricing-bg" id="pricing">
+ <div class="wrap">
+ <div data-r>
+ <div class="sec-eye">Pricing</div>
+ <h2 class="d sec-h">Less than one missed job.</h2>
+ <p class="sec-lead">If Toro catches 2–3 jobs a month you would have lost to slow replies, it pays for itself many times over.</p>
+ </div>
+<div class="vs-strip" data-r>
+ <div class="vs-col">
+ <div class="vs-lbl">Human Receptionist</div>
+ <div class="vs-price strike">$3,500/mo</div>
+ <div class="vs-desc">Salary, benefits, training, turnover</div>
+ </div>
+ <div class="vs-col">
+ <div class="vs-lbl">Generic AI Tool</div>
+ <div class="vs-price" style="color:var(--muted)">$29–199/mo</div>
+ <div class="vs-desc">No trade knowledge. No one managing it.</div>
+ </div>
+ <div class="vs-col hi">
+ <div class="vs-lbl">Toro Intelligence</div>
+ <div class="vs-price">$199/mo</div>
+ <div class="vs-desc">Managed. Trade-specific. Built for your business.</div>
+ </div>
+</div>
+
+<div class="price-card" data-r>
+ <div class="price-head">
+ <div class="price-tier">Toro for Electricians</div>
+ <div class="price-tagline">Chloe + Max — fully managed</div>
+ <div class="price-row">
+ <span class="price-dollar">$</span>
+ <span class="price-num">199</span>
+ <span class="price-per">/mo</span>
+ </div>
+ </div>
+ <div class="price-body">
+ <ul class="price-list">
+ <li>SMS auto-response during your business hours (Chloe)</li>
+ <li>Automatic text recovery for missed calls</li>
+ <li>Calendar &amp; appointment scheduling (Max)</li>
+ <li>One dedicated business phone number</li>
+ <li>You approve responses via Telegram — stays in your control</li>
+ <li>Runs on local hardware — your data stays yours</li>
+ <li>Ongoing agent tuning as your business grows</li>
+ <li class="star"><strong style="color:var(--text)">$20/mo AI intelligence subscription included</strong> — the brain powering Chloe and Max</li>
+ </ul>
+
+ <div class="intel-box">
+ <div class="intel-label">Intelligence Plan</div>
+ <p class="intel-desc">Your $20/mo intelligence plan is included and powers everything — Chloe's conversations, Max's scheduling, and any agents you add later. As your usage grows, you can upgrade your intelligence plan anytime.</p>
+ <div class="intel-tiers">
+ <div class="intel-tier active">
+ <div class="intel-tier-name">Standard</div>
+ <div class="intel-tier-price">Included</div>
+ </div>
+ <div class="intel-tier">
+ <div class="intel-tier-name">Plus</div>
+ <div class="intel-tier-price">Ask us</div>
+ </div>
+ <div class="intel-tier">
+ <div class="intel-tier-name">Pro</div>
+ <div class="intel-tier-price">Ask us</div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div class="price-foot">
+ <span>Month-to-month · no contracts</span>
+ <span style="color:var(--text);font-weight:500">Setup fee applies</span>
+ </div>
+</div>
+
+<div data-r><div class="sec-eye" style="margin-top:48px;margin-bottom:14px">One-Time Setup</div>
+ <div class="setup-row">
+ <div class="setup-cell">
+ <div class="setup-lbl">Single Business</div>
+ <div class="setup-price">$499</div>
+ <div class="setup-note">Chloe + Max configured for your trade &amp; market</div>
+ </div>
+ <div class="setup-cell">
+ <div class="setup-lbl">Team of 5</div>
+ <div class="setup-price">$299 <span style="font-size:14px;color:var(--muted)">/ea</span></div>
+ <div class="setup-note">Ideal for small crews or partner shops</div>
+ </div>
+ <div class="setup-cell">
+ <div class="setup-lbl">Team of 10</div>
+ <div class="setup-price">$199 <span style="font-size:14px;color:var(--muted)">/ea</span></div>
+ <div class="setup-note">Best rate — franchise or fleet operators</div>
+ </div>
+ </div>
+</div>
+
+<p style="font-size:12px;color:var(--muted);margin-top:16px" data-r>SMS-based today. Phone call routing coming soon. Intelligence plan upgrades available as your usage grows. Responds during your configured business hours.</p>
+
+ </div>
+</section>
+
+<section class="closing-bg">
+ <div class="wrap-narrow">
+ <div data-r>
+ <h2 class="d closing-h">Don't lose good jobs <em>because you were busy working.</em></h2>
+ <p class="closing-p">Toro helps electrical businesses respond faster, stay organized, and turn more inquiries into booked work — starting with a 15-minute setup call.</p>
+ <div class="cta-group">
+ <a href="#" class="btn">Book a Demo →</a>
+ <a href="mailto:hello@torointelligence.com" class="btn-ghost">Email us instead →</a>
+ </div>
+ </div>
+ <div class="chips" data-r>
+ <div class="chip"><span>🖥</span> Runs on local hardware</div>
+ <div class="chip"><span>🔒</span> Your data, your control</div>
+ <div class="chip"><span>📱</span> SMS-first, no app needed</div>
+ <div class="chip"><span>📆</span> Month-to-month</div>
+ <div class="chip"><span>⚡</span> Built for trades</div>
+ </div>
+ </div>
+</section>
+
+<footer>
+ <div class="foot-inner">
+ <div class="foot-logo">Toro<b>.</b></div>
+ <div class="foot-note">© 2026 Toro Intelligence · AI communication for trades</div>
+ </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+ entries.forEach(e => {
+ if(e.isIntersecting){
+ e.target.classList.add('on');
+ [...e.target.children].forEach((c,i) => c.style.transitionDelay = i * 0.07 + 's');
+ }
+ });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('[data-r]').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
